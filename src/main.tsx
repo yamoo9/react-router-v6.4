@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import '@/styles/global.css';
 import Contact, { loader as contactLoader } from './routes/Contact';
 import ContactEdit, { action as contactEditAction } from './routes/ContactEdit';
+import { action as destoryAction } from './routes/ContactDestory';
 import RootLayout, {
   loader as rootLoader,
   action as rootAction,
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
         element: <ContactEdit />,
         loader: contactLoader,
         action: contactEditAction,
+      },
+      {
+        path: '/contacts/:contactId/destory',
+        action: destoryAction,
       },
     ],
   },
