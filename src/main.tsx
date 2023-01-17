@@ -8,7 +8,7 @@ import RootLayout, {
   action as rootAction,
 } from '@/routes/RootLayout';
 import NotFound from './pages/NotFound';
-import Contact from './routes/Contact';
+import Contact, { loader as contactLoader } from './routes/Contact';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +21,7 @@ const router = createBrowserRouter([
       {
         path: '/contacts/:contactId',
         element: <Contact />,
+        loader: contactLoader,
       },
     ],
   },

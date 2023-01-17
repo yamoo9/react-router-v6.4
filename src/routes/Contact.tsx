@@ -1,15 +1,17 @@
 import { Favorite } from '@/components';
-import { Form } from 'react-router-dom';
+import { Form, useLoaderData } from 'react-router-dom';
+import { getContact } from '@/services/contacts';
+
+type LoaderParams = {
+  params: any;
+};
+
+export async function loader({ params }: LoaderParams) {
+  return getContact(params.contactId);
+}
 
 export default function Contact() {
-  const contact: Omit<ContactType, 'id'> = {
-    first: 'Your',
-    last: 'Name',
-    avatar: 'https://placekitten.com/200/200',
-    twitter: 'your_handle',
-    notes: 'Some notes',
-    favorite: true,
-  };
+  const contact = useLoaderData() as ContactType;
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     if (!confirm('Please confirm you want to delete this record.')) {
@@ -54,7 +56,9 @@ export default function Contact() {
             <button type="submit">Edit</button>
           </Form>
           <Form method="post" action="destory" onSubmit={handleSubmit}>
-            <button type="submit">Delete</button>
+            <button type="submit" style={{ color: '#c82727' }}>
+              Delete
+            </button>
           </Form>
         </div>
       </div>
