@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Form, Link } from 'react-router-dom';
 
 interface Props {
   contacts: ContactType[];
@@ -21,9 +21,9 @@ export function Sidebar({ contacts }: Props): JSX.Element {
           <div className="sr-only" aria-live="polite"></div>
         </form>
 
-        <form method="POST">
+        <Form method="post">
           <button type="submit">New</button>
-        </form>
+        </Form>
       </div>
 
       <nav aria-label="User Contacts">

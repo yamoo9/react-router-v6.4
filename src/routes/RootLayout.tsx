@@ -1,6 +1,6 @@
 import { Outlet, useLoaderData } from 'react-router-dom';
 import { Detail, Sidebar } from '@/components';
-import { getContacts } from '@/services/contacts';
+import { getContacts, createContact } from '@/services/contacts';
 
 export default function RootLayout() {
   const { contacts } = useLoaderData() as { contacts: ContactType[] };
@@ -18,4 +18,9 @@ export default function RootLayout() {
 export async function loader() {
   const contacts = await getContacts();
   return { contacts };
+}
+
+export async function action() {
+  const contact = await createContact();
+  return { contact };
 }

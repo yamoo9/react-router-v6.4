@@ -3,7 +3,10 @@ import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import '@/styles/global.css';
-import RootLayout, { loader as rootLoader } from '@/routes/RootLayout';
+import RootLayout, {
+  loader as rootLoader,
+  action as rootAction,
+} from '@/routes/RootLayout';
 import NotFound from './pages/NotFound';
 import Contact from './routes/Contact';
 
@@ -13,6 +16,7 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <NotFound />,
     loader: rootLoader,
+    action: rootAction,
     children: [
       {
         path: '/contacts/:contactId',
