@@ -1,3 +1,7 @@
-export function Detail() {
-  return <div id="detail"></div>;
+interface Props {
+  [key: string]: unknown;
+}
+
+export function Detail(props: Props): JSX.Element {
+  return <div id="detail" {...props} />;
 }
