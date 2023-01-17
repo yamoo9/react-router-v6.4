@@ -1,4 +1,4 @@
-import { Form, Link } from 'react-router-dom';
+import { Form, NavLink } from 'react-router-dom';
 
 interface Props {
   contacts: ContactType[];
@@ -31,7 +31,12 @@ export function Sidebar({ contacts }: Props): JSX.Element {
           <ul>
             {contacts.map((contact) => (
               <li key={contact.id}>
-                <Link to={`contacts/${contact.id}`}>
+                <NavLink
+                  to={`contacts/${contact.id}`}
+                  className={({ isActive, isPending }) =>
+                    isActive ? 'active' : isPending ? 'pending' : ''
+                  }
+                >
                   {contact.first || contact.last ? (
                     <>
                       {contact.first} {contact.last}
@@ -42,7 +47,7 @@ export function Sidebar({ contacts }: Props): JSX.Element {
                     </p>
                   )}{' '}
                   {contact.favorite && <span>★</span>}
-                </Link>
+                </NavLink>
               </li>
             ))}
           </ul>
