@@ -1,14 +1,20 @@
-import { Outlet, redirect, useLoaderData } from 'react-router-dom';
+import {
+  Outlet,
+  redirect,
+  useLoaderData,
+  useNavigation,
+} from 'react-router-dom';
 import { Detail, Sidebar } from '@/components';
 import { getContacts, createContact } from '@/services/contacts';
 
 export default function RootLayout() {
   const { contacts } = useLoaderData() as { contacts: ContactType[] };
+  const navigation = useNavigation();
 
   return (
     <>
       <Sidebar contacts={contacts} />
-      <Detail>
+      <Detail className={navigation.state === 'loading' ? 'loading' : ''}>
         <Outlet />
       </Detail>
     </>
