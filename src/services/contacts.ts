@@ -20,7 +20,7 @@ export async function createContact() {
   await fakeNetwork();
 
   let id = Math.random().toString(36).substring(2, 9);
-  let contact = { id, createdAt: Date.now() };
+  let contact = { id, createdAt: Date.now() } as unknown as ContactType;
   let contacts = await getContacts();
 
   contacts.unshift(contact);
