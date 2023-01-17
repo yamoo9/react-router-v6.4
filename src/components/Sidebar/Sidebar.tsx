@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export function Sidebar() {
   return (
     <div id="sidebar">
@@ -23,10 +25,10 @@ export function Sidebar() {
       <nav aria-label="User Contacts">
         <ul>
           <li>
-            <a href="/contacts/1">Your Name</a>
+            <Link to="/contacts/1">Your Name</Link>
           </li>
           <li>
-            <a href="/contacts/1">Your Name</a>
+            <Link to="/contacts/1">Your Name</Link>
           </li>
         </ul>
       </nav>
