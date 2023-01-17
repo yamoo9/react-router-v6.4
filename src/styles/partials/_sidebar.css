@@ -114,3 +114,7 @@ i {
 #sidebar nav a.pending {
   color: hsl(224, 98%, 58%);
 }
+
+#sidebar p {
+  margin: 0;
+}
