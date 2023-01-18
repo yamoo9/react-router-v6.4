@@ -9,7 +9,7 @@ export function Sidebar({ contacts }: Props): JSX.Element {
     <div id="sidebar">
       <h1>React Router Contracts</h1>
       <div>
-        <form id="search-from" role="search">
+        <Form id="search-from" role="search">
           <input
             type="search"
             id="q"
@@ -19,7 +19,7 @@ export function Sidebar({ contacts }: Props): JSX.Element {
           />
           <div id="search-spinner" aria-hidden hidden={true}></div>
           <div className="sr-only" aria-live="polite"></div>
-        </form>
+        </Form>
 
         <Form method="post">
           <button type="submit">New</button>
