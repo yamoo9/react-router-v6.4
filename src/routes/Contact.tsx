@@ -63,7 +63,13 @@ export default function Contact() {
 }
 
 export async function loader({ params }: LoaderParams) {
-  return getContact(params.contactId);
+  const contact = await getContact(params.contactId);
+  if (!contact) {
+    throw new Response('', {
+      status: 404,
+      statusText: 'Not Found',
+    });
+  }
 }
 
 export async function action({ request, params }: any) {
