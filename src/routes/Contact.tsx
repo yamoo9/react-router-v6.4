@@ -1,14 +1,10 @@
 import { Favorite } from '@/components';
 import { Form, useLoaderData } from 'react-router-dom';
-import { getContact } from '@/services/contacts';
+import { getContact, updateContact } from '@/services/contacts';
 
 type LoaderParams = {
   params: any;
 };
-
-export async function loader({ params }: LoaderParams) {
-  return getContact(params.contactId);
-}
 
 export default function Contact() {
   const contact = useLoaderData() as ContactType;
@@ -64,4 +60,15 @@ export default function Contact() {
       </div>
     </div>
   );
+}
+
+export async function loader({ params }: LoaderParams) {
+  return getContact(params.contactId);
+}
+
+export async function action({ request, params }: any) {
+  let formData = await request.formData();
+  return updateContact(params.contactId, {
+    favorite: formData.get('favorite') === 'true',
+  });
 }

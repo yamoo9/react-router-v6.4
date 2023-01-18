@@ -1,4 +1,4 @@
-import { Form } from 'react-router-dom';
+import { useFetcher } from 'react-router-dom';
 
 interface Props {
   contact: ContactType;
@@ -6,9 +6,10 @@ interface Props {
 
 export function Favorite({ contact }: Props): JSX.Element {
   const { favorite } = contact;
+  const fetcher = useFetcher();
 
   return (
-    <Form method="post">
+    <fetcher.Form method="post">
       <button
         type="submit"
         name="favorite"
@@ -17,6 +18,6 @@ export function Favorite({ contact }: Props): JSX.Element {
       >
         {favorite ? '★' : '☆'}
       </button>
-    </Form>
+    </fetcher.Form>
   );
 }

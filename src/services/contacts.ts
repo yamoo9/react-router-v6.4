@@ -41,7 +41,7 @@ export async function getContact(id: string): Promise<ContactType | null> {
 
 export async function updateContact(
   id: string,
-  updates: ContactType
+  updates: Partial<ContactType>
 ): Promise<ContactType> {
   await fakeNetwork();
 

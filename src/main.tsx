@@ -5,7 +5,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import '@/styles/global.css';
 
 import Index from './routes';
-import Contact, { loader as contactLoader } from './routes/Contact';
+import Contact, {
+  loader as contactLoader,
+  action as contactAction,
+} from './routes/Contact';
 import ContactEdit, { action as contactEditAction } from './routes/ContactEdit';
 import { action as destoryAction } from './routes/ContactDestory';
 import RootLayout, {
@@ -27,6 +30,7 @@ const router = createBrowserRouter([
         path: '/contacts/:contactId',
         element: <Contact />,
         loader: contactLoader,
+        action: contactAction,
       },
       {
         path: '/contacts/:contactId/edit',
