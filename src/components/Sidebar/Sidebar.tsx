@@ -31,7 +31,10 @@ export function Sidebar({
             placeholder="Search"
             defaultValue={q}
             onChange={(e) => {
-              onSubmit?.(e.currentTarget.form);
+              const isFirstSearch = q === null;
+              onSubmit?.(e.currentTarget.form, {
+                replace: !isFirstSearch,
+              });
             }}
           />
           <div
