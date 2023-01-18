@@ -15,9 +15,18 @@ export default function RootLayout() {
   const navigation = useNavigation();
   const { contacts, q } = useLoaderData() as LoadDataType;
 
+  const isSearching =
+    navigation.location &&
+    new URLSearchParams(navigation.location.search).has('q');
+
   return (
     <>
-      <Sidebar contacts={contacts} q={q} onSubmit={submit} />
+      <Sidebar
+        isSearching={isSearching}
+        contacts={contacts}
+        onSubmit={submit}
+        q={q}
+      />
       <Detail className={navigation.state === 'loading' ? 'loading' : ''}>
         <Outlet />
       </Detail>

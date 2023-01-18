@@ -4,10 +4,16 @@ import { Form, NavLink, SubmitFunction } from 'react-router-dom';
 interface Props {
   contacts: ContactType[];
   onSubmit: SubmitFunction;
+  isSearching: boolean;
   q: string;
 }
 
-export function Sidebar({ contacts, q, onSubmit }: Props): JSX.Element {
+export function Sidebar({
+  contacts,
+  isSearching,
+  q,
+  onSubmit,
+}: Props): JSX.Element {
   useEffect(() => {
     (document.getElementById('q') as HTMLInputElement).value = q;
   }, [q]);
@@ -28,7 +34,12 @@ export function Sidebar({ contacts, q, onSubmit }: Props): JSX.Element {
               onSubmit?.(e.currentTarget.form);
             }}
           />
-          <div id="search-spinner" aria-hidden hidden={true}></div>
+          <div
+            id="search-spinner"
+            hidden={!isSearching}
+            aria-hidden={!isSearching}
+            aria-label="데이터 로딩 중..."
+          />
           <div className="sr-only" aria-live="polite"></div>
         </Form>
 
@@ -71,3 +82,7 @@ export function Sidebar({ contacts, q, onSubmit }: Props): JSX.Element {
     </div>
   );
 }
+
+Sidebar.defaultProps = {
+  isSearching: false,
+};
