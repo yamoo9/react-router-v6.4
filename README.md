@@ -18,8 +18,8 @@ npm i -D @types/node @types/sort-by
 ```json
 {
   "scripts": {
-    **"start": "npm run dev -- --open",
-    "dev": "vite --host --port=3000"**
+    "start": "npm run dev -- --open",
+    "dev": "vite --host --port=3000"
   }
 }
 ```
