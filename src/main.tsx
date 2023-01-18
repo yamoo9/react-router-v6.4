@@ -1,6 +1,11 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from 'react-router-dom';
 
 import '@/styles/global.css';
 
@@ -17,7 +22,10 @@ import RootLayout, {
 } from '@/routes/RootLayout';
 import NotFound from './routes/NotFound';
 
-const router = createBrowserRouter([
+/* 라우터 구성 스타일 ------------------------------------------------------------ */
+
+// 1. 라우트 구성 객체
+const routesConfig = [
   {
     path: '/',
     element: <RootLayout />,
@@ -50,7 +58,37 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+];
+
+// 2. JSX
+const routesFromElements = createRoutesFromElements(
+  <Route
+    path="/"
+    element={<RootLayout />}
+    loader={rootLoader}
+    action={rootAction}
+    errorElement={<NotFound />}
+  >
+    <Route errorElement={<NotFound />}>
+      <Route index element={<Index />} />
+      <Route
+        path="contacts/:contactId"
+        element={<Contact />}
+        loader={contactLoader}
+        action={contactAction}
+      />
+      <Route
+        path="contacts/:contactId/edit"
+        element={<ContactEdit />}
+        loader={contactLoader}
+        action={contactEditAction}
+      />
+      <Route path="contacts/:contactId/destory" action={destoryAction} />
+    </Route>
+  </Route>
+);
+
+const router = createBrowserRouter(routesFromElements);
 
 const container = document.getElementById('root') as HTMLElement;
 
