@@ -1,10 +1,12 @@
-import { Form, NavLink } from 'react-router-dom';
+import { Form, NavLink, SubmitFunction } from 'react-router-dom';
 
 interface Props {
   contacts: ContactType[];
+  onSubmit?: SubmitFunction;
+  q?: string;
 }
 
-export function Sidebar({ contacts }: Props): JSX.Element {
+export function Sidebar({ contacts, q, onSubmit }: Props): JSX.Element {
   return (
     <div id="sidebar">
       <h1>React Router Contracts</h1>
@@ -16,6 +18,10 @@ export function Sidebar({ contacts }: Props): JSX.Element {
             name="q"
             aria-label="Search contacts"
             placeholder="Search"
+            defaultValue={q}
+            onChange={(e) => {
+              onSubmit?.(e.currentTarget.form);
+            }}
           />
           <div id="search-spinner" aria-hidden hidden={true}></div>
           <div className="sr-only" aria-live="polite"></div>

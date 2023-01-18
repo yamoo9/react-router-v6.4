@@ -3,17 +3,22 @@ import {
   redirect,
   useLoaderData,
   useNavigation,
+  useSubmit,
 } from 'react-router-dom';
 import { Detail, Sidebar } from '@/components';
 import { getContacts, createContact } from '@/services/contacts';
 
 export default function RootLayout() {
-  const { contacts } = useLoaderData() as { contacts: ContactType[] };
+  const submit = useSubmit();
   const navigation = useNavigation();
+  const { contacts, q } = useLoaderData() as {
+    contacts: ContactType[];
+    q?: string;
+  };
 
   return (
     <>
-      <Sidebar contacts={contacts} />
+      <Sidebar contacts={contacts} q={q} onSubmit={submit} />
       <Detail className={navigation.state === 'loading' ? 'loading' : ''}>
         <Outlet />
       </Detail>
