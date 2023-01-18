@@ -5,8 +5,13 @@ interface Props {
 }
 
 export function Favorite({ contact }: Props): JSX.Element {
-  const { favorite } = contact;
   const fetcher = useFetcher();
+
+  let { favorite } = contact;
+
+  if (fetcher.formData) {
+    favorite = fetcher.formData.get('favorite') === 'true';
+  }
 
   return (
     <fetcher.Form method="post">
