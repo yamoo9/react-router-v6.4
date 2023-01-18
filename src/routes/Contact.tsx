@@ -1,13 +1,12 @@
 import { Favorite } from '@/components';
 import { Form, useLoaderData } from 'react-router-dom';
 import { getContact, updateContact } from '@/services/contacts';
-
-type LoaderParams = {
-  params: any;
-};
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 export default function Contact() {
   const contact = useLoaderData() as ContactType;
+
+  useDocumentTitle(contact);
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     if (!confirm('Please confirm you want to delete this record.')) {
@@ -61,6 +60,10 @@ export default function Contact() {
     </div>
   );
 }
+
+type LoaderParams = {
+  params: any;
+};
 
 export async function loader({ params }: LoaderParams) {
   const contact = await getContact(params.contactId);

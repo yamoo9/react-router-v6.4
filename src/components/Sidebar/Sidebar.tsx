@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Form, NavLink, SubmitFunction } from 'react-router-dom';
+import { Form, Link, NavLink, SubmitFunction } from 'react-router-dom';
 
 interface Props {
   contacts: ContactType[];
@@ -20,7 +20,11 @@ export function Sidebar({
 
   return (
     <div id="sidebar">
-      <h1>React Router Contracts</h1>
+      <h1>
+        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+          React Router Contracts
+        </Link>
+      </h1>
       <div>
         <Form id="search-from" role="search">
           <input
