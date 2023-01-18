@@ -70,6 +70,7 @@ export async function loader({ params }: LoaderParams) {
       statusText: 'Not Found',
     });
   }
+  return contact;
 }
 
 export async function action({ request, params }: any) {
