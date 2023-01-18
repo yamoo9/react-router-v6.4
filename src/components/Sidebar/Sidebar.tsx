@@ -1,12 +1,17 @@
+import { useEffect } from 'react';
 import { Form, NavLink, SubmitFunction } from 'react-router-dom';
 
 interface Props {
   contacts: ContactType[];
-  onSubmit?: SubmitFunction;
-  q?: string;
+  onSubmit: SubmitFunction;
+  q: string;
 }
 
 export function Sidebar({ contacts, q, onSubmit }: Props): JSX.Element {
+  useEffect(() => {
+    (document.getElementById('q') as HTMLInputElement).value = q;
+  }, [q]);
+
   return (
     <div id="sidebar">
       <h1>React Router Contracts</h1>
