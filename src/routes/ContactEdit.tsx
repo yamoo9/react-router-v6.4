@@ -1,9 +1,10 @@
 import { useRef, useEffect } from 'react';
-import { Form, redirect, useLoaderData } from 'react-router-dom';
+import { Form, redirect, useLoaderData, useNavigate } from 'react-router-dom';
 import { updateContact } from '@/services/contacts';
 
 export default function ContactEdit() {
   const contact = useLoaderData() as ContactType;
+  const navigate = useNavigate();
 
   const nameLabelRef = useRef<HTMLSpanElement | null>(null);
   const firstNameInputRef = useRef<HTMLInputElement | null>(null);
@@ -63,7 +64,11 @@ export default function ContactEdit() {
       </label>
       <p>
         <button type="submit">Save</button>
-        <button type="reset" style={{ color: '#808080' }}>
+        <button
+          type="button"
+          onClick={() => navigate(-1)}
+          style={{ color: '#808080' }}
+        >
           Cancel
         </button>
       </p>
